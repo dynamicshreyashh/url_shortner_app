@@ -1,0 +1,77 @@
+{
+  "info": {
+    "name": "URL Shortener API",
+    "description": "Postman examples for the Spring Boot URL shortener.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Short URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://example.com\",\n  \"alias\": \"myalias\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/shorten",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "shorten"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Redirect",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/{{code}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "{{code}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Stats",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/stats/{{code}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "stats",
+            "{{code}}"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "code",
+      "value": "myalias"
+    }
+  ]
+}
