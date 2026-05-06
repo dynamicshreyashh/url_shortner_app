@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>URL Shortener</h1>
+    <p>Shorten your long URLs in seconds</p>
+</header>
+
+<!-- Main Container -->
+<main>
+
+    <!-- Shorten URL Card -->
+    <div class="card">
+        <h2>Shorten a URL</h2>
+
+        <!-- Input Section -->
+        <div class="input-group">
+            <input type="text" id="originalUrl"
+                   placeholder="Enter your long URL here..." />
+        </div>
+
+        <div class="input-group">
+            <input type="number" id="validityDays"
+                   placeholder="Validity in days (e.g. 30)" min="1" />
+        </div>
+
+        <!-- Shorten Button -->
+        <button id="shortenBtn" onclick="shortenUrl()">
+            Shorten URL
+        </button>
+
+        <!-- Loading Spinner -->
+        <div id="loader" class="loader hidden"></div>
+
+        <!-- Error Message -->
+        <div id="errorMsg" class="error hidden"></div>
+
+        <!-- Result Section -->
+        <div id="result" class="result hidden">
+            <p>Your Short URL:</p>
+            <div class="short-url-box">
+                <a id="shortUrl" href="#" target="_blank"></a>
+                <button onclick="copyUrl()">Copy</button>
+            </div>
+            <div class="action-buttons">
+                <button onclick="getStats()">View Stats</button>
+                <button class="delete-btn" onclick="deleteUrl()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Card -->
+    <div id="statsCard" class="card hidden">
+        <h2>URL Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <p class="stat-label">Original URL</p>
+                <p id="statOriginalUrl" class="stat-value"></p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-label">Short URL</p>
+                <p id="statShortUrl" class="stat-value"></p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-label">Created At</p>
+                <p id="statCreatedAt" class="stat-value"></p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-label">Expires At</p>
+                <p id="statExpiresAt" class="stat-value"></p>
+            </div>
+            <div class="stat-item">
+                <p class="stat-label">Total Clicks</p>
+                <p id="statClickCount" class="stat-value"></p>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
