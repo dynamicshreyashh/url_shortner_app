@@ -97,11 +97,11 @@ public class UrlService {
         UrlResponse response = new UrlResponse();
         response.setOriginalUrl(urlMapping.getOriginalUrl());
         response.setShortCode(urlMapping.getShortCode());
-        //response.setShortUrl("http://localhost:8080/r/" + urlMapping.getShortCode());
-        String baseUrl = System.getenv("APP_BASE_URL") != null
-                ? System.getenv("APP_BASE_URL")
-                : "http://localhost:8080";
-        response.setShortUrl(baseUrl + "/r/" + urlMapping.getShortCode());
+
+        response.setShortUrl(
+                "https://url-shortner-app-wwja.onrender.com/r/"
+                        + urlMapping.getShortCode()
+        );
         response.setCreatedAt(urlMapping.getCreatedAt());
         response.setExpiresAt(urlMapping.getExpiresAt());
         response.setClickCount(urlMapping.getClickCount());
