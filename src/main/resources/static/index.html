@@ -3,89 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
+    <title>Shortly | Smart URL Shortener</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Header -->
-<header>
-    <h1>URL Shortener</h1>
-    <p>Shorten your long URLs in seconds</p>
-</header>
+<!-- Background Blur -->
+<div class="bg-blur blur-one"></div>
+<div class="bg-blur blur-two"></div>
 
-<!-- Main Container -->
-<main>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">Shortly</div>
+</nav>
 
-    <!-- Shorten URL Card -->
+<!-- Hero Section -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Simplify Your Links <br>
+            With Powerful URL Shortening
+        </h1>
+
+        <p>
+            Generate short, clean and trackable links instantly.
+            Built with Spring Boot for speed and scalability.
+        </p>
+    </div>
+
+    <!-- Main Card -->
     <div class="card">
-        <h2>Shorten a URL</h2>
+
+        <div class="card-header">
+            <h2>Create Short URL</h2>
+            <p>Paste your long URL below</p>
+        </div>
 
         <!-- Input Section -->
         <div class="input-group">
-            <input type="text" id="originalUrl"
-                   placeholder="Enter your long URL here..." />
+            <input type="text"
+                   id="originalUrl"
+                   placeholder="https://example.com/very-long-url" />
         </div>
 
         <div class="input-group">
-            <input type="number" id="validityDays"
-                   placeholder="Validity in days (e.g. 30)" min="1" />
+            <input type="number"
+                   id="validityDays"
+                   placeholder="Validity in days (default 30)"
+                   min="1" />
         </div>
 
-        <!-- Shorten Button -->
+        <!-- Button -->
         <button id="shortenBtn" onclick="shortenUrl()">
-            Shorten URL
+            Generate Short Link
         </button>
 
-        <!-- Loading Spinner -->
+        <!-- Loader -->
         <div id="loader" class="loader hidden"></div>
 
-        <!-- Error Message -->
+        <!-- Error -->
         <div id="errorMsg" class="error hidden"></div>
 
-        <!-- Result Section -->
+        <!-- Result -->
         <div id="result" class="result hidden">
-            <p>Your Short URL:</p>
+
+            <div class="result-top">
+                <span>Short URL Generated</span>
+            </div>
+
             <div class="short-url-box">
                 <a id="shortUrl" href="#" target="_blank"></a>
                 <button onclick="copyUrl()">Copy</button>
             </div>
+
             <div class="action-buttons">
-                <button onclick="getStats()">View Stats</button>
-                <button class="delete-btn" onclick="deleteUrl()">Delete</button>
+                <button onclick="getStats()">Analytics</button>
+                <button class="delete-btn" onclick="deleteUrl()">
+                    Delete
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Stats Card -->
-    <div id="statsCard" class="card hidden">
-        <h2>URL Statistics</h2>
-        <div class="stats-grid">
-            <div class="stat-item">
-                <p class="stat-label">Original URL</p>
-                <p id="statOriginalUrl" class="stat-value"></p>
-            </div>
-            <div class="stat-item">
-                <p class="stat-label">Short URL</p>
-                <p id="statShortUrl" class="stat-value"></p>
-            </div>
-            <div class="stat-item">
-                <p class="stat-label">Created At</p>
-                <p id="statCreatedAt" class="stat-value"></p>
-            </div>
-            <div class="stat-item">
-                <p class="stat-label">Expires At</p>
-                <p id="statExpiresAt" class="stat-value"></p>
-            </div>
-            <div class="stat-item">
-                <p class="stat-label">Total Clicks</p>
-                <p id="statClickCount" class="stat-value"></p>
-            </div>
-        </div>
+</section>
+
+<!-- Stats -->
+<section id="statsCard" class="stats-section hidden">
+
+    <div class="stats-header">
+        <h2>URL Analytics</h2>
+        <p>Track your shortened URL performance</p>
     </div>
 
-</main>
+    <div class="stats-grid">
+
+        <div class="stat-item">
+            <p class="stat-label">Original URL</p>
+            <p id="statOriginalUrl" class="stat-value"></p>
+        </div>
+
+        <div class="stat-item">
+            <p class="stat-label">Short URL</p>
+            <p id="statShortUrl" class="stat-value"></p>
+        </div>
+
+        <div class="stat-item">
+            <p class="stat-label">Created At</p>
+            <p id="statCreatedAt" class="stat-value"></p>
+        </div>
+
+        <div class="stat-item">
+            <p class="stat-label">Expires At</p>
+            <p id="statExpiresAt" class="stat-value"></p>
+        </div>
+
+        <div class="stat-item">
+            <p class="stat-label">Total Clicks</p>
+            <p id="statClickCount" class="stat-value"></p>
+        </div>
+
+    </div>
+</section>
 
 <script src="app.js"></script>
+
 </body>
 </html>
