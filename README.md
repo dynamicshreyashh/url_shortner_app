@@ -28,7 +28,7 @@ The application allows users to generate short URLs, redirect links, track click
 
 
 
-!\[Project Screenshot](assets/screenshot.png)
+![Project Screenshot](assets/screenshot.png)
 
 
 
