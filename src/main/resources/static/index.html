@@ -4,135 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shortly | Smart URL Shortener</title>
-
     <link rel="stylesheet" href="style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<!-- Background Blur -->
-<div class="bg-blur blur-one"></div>
-<div class="bg-blur blur-two"></div>
+<!-- Animated grid background -->
+<div class="grid-bg"></div>
+<div class="noise"></div>
+
+<!-- Floating orbs -->
+<div class="orb orb-a"></div>
+<div class="orb orb-b"></div>
+<div class="orb orb-c"></div>
 
 <!-- Navbar -->
 <nav class="navbar">
-    <div class="logo">Shortly</div>
+    <div class="logo">
+        <span class="logo-bracket">[</span>shortly<span class="logo-bracket">]</span>
+    </div>
+    <div class="nav-tag">URL Shortener</div>
 </nav>
 
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="hero">
 
-    <div class="hero-content">
-
-        <h1>
-            Simplify Your Links <br>
-            With Powerful URL Shortening
-        </h1>
-
-        <p>
-            Generate short, clean and trackable links instantly.
-            Built with Spring Boot for speed and scalability.
-        </p>
+    <div class="hero-eyebrow">
+        <span class="dot-live"></span>
+        Live &amp; running on Render
     </div>
+
+    <h1 class="hero-title">
+        Long links,<br>
+        <span class="title-accent">cut short.</span>
+    </h1>
+
+    <p class="hero-sub">
+        Paste any URL. Get a clean, trackable short link in under a second.
+    </p>
 
     <!-- Main Card -->
     <div class="card">
 
-        <div class="card-header">
-            <h2>Create Short URL</h2>
-            <p>Paste your long URL below</p>
+        <div class="card-label">Create a short link</div>
+
+        <div class="input-stack">
+            <div class="input-row">
+                <span class="input-icon">⌁</span>
+                <input
+                    type="text"
+                    id="originalUrl"
+                    placeholder="https://your-very-long-url.com/goes/here"
+                    autocomplete="off"
+                    spellcheck="false"
+                />
+            </div>
+
+            <div class="input-row input-row-small">
+                <span class="input-icon">◷</span>
+                <input
+                    type="number"
+                    id="validityDays"
+                    placeholder="Expires in days  (default 30)"
+                    min="1"
+                />
+            </div>
         </div>
 
-        <!-- Input Section -->
-        <div class="input-group">
-            <input type="text"
-                   id="originalUrl"
-                   placeholder="https://example.com/very-long-url" />
-        </div>
-
-        <div class="input-group">
-            <input type="number"
-                   id="validityDays"
-                   placeholder="Validity in days (default 30)"
-                   min="1" />
-        </div>
-
-        <!-- Button -->
-        <button id="shortenBtn" onclick="shortenUrl()">
-            Generate Short Link
+        <button id="shortenBtn" class="shorten-btn" onclick="shortenUrl()">
+            <span class="btn-text">Shorten link</span>
+            <span class="btn-arrow">→</span>
         </button>
 
         <!-- Loader -->
-        <div id="loader" class="loader hidden"></div>
+        <div id="loader" class="loader hidden">
+            <div class="loader-bar"></div>
+        </div>
 
         <!-- Error -->
-        <div id="errorMsg" class="error hidden"></div>
+        <div id="errorMsg" class="error-msg hidden"></div>
 
         <!-- Result -->
         <div id="result" class="result hidden">
-
-            <div class="result-top">
-                <span>Short URL Generated</span>
+            <div class="result-divider">
+                <span>Your short link</span>
             </div>
 
-            <div class="short-url-box">
-                <a id="shortUrl" href="#" target="_blank"></a>
-                <button onclick="copyUrl()">Copy</button>
+            <div class="short-url-row">
+                <div class="short-url-pill">
+                    <span class="pill-dot"></span>
+                    <a id="shortUrl" href="#" target="_blank"></a>
+                </div>
+                <button class="icon-btn copy-btn" onclick="copyUrl()" title="Copy">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                </button>
             </div>
 
-            <div class="action-buttons">
-                <button onclick="getStats()">Analytics</button>
-                <button class="delete-btn" onclick="deleteUrl()">
+            <div class="result-actions">
+                <button class="action-btn analytics-btn" onclick="getStats()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    Analytics
+                </button>
+                <button class="action-btn delete-btn" onclick="deleteUrl()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
                     Delete
                 </button>
             </div>
         </div>
     </div>
 
-</section>
-
-<!-- Stats -->
-<section id="statsCard" class="stats-section hidden">
-
-    <div class="stats-header">
-        <h2>URL Analytics</h2>
-        <p>Track your shortened URL performance</p>
+    <!-- Stat strip -->
+    <div class="stat-strip">
+        <div class="stat-chip">
+            <span class="chip-num">62<sup>6</sup></span>
+            <span class="chip-label">unique codes</span>
+        </div>
+        <div class="strip-divider"></div>
+        <div class="stat-chip">
+            <span class="chip-num">&lt;50ms</span>
+            <span class="chip-label">redirect speed</span>
+        </div>
+        <div class="strip-divider"></div>
+        <div class="stat-chip">
+            <span class="chip-num">REST</span>
+            <span class="chip-label">API ready</span>
+        </div>
     </div>
 
-    <div class="stats-grid">
+</section>
 
-        <div class="stat-item">
-            <p class="stat-label">Original URL</p>
-            <p id="statOriginalUrl" class="stat-value"></p>
+<!-- Analytics Panel -->
+<section id="statsCard" class="analytics-section hidden">
+
+    <div class="analytics-inner">
+        <div class="analytics-header">
+            <div class="analytics-title-row">
+                <h2>Analytics</h2>
+                <span class="live-badge">
+                    <span class="dot-live"></span> Live data
+                </span>
+            </div>
+            <p>Performance breakdown for your shortened link</p>
         </div>
 
-        <div class="stat-item">
-            <p class="stat-label">Short URL</p>
-            <p id="statShortUrl" class="stat-value"></p>
-        </div>
+        <div class="analytics-grid">
 
-        <div class="stat-item">
-            <p class="stat-label">Created At</p>
-            <p id="statCreatedAt" class="stat-value"></p>
-        </div>
+            <div class="analytics-card clicks-card">
+                <div class="a-label">Total clicks</div>
+                <div class="a-value big-num" id="statClickCount">—</div>
+                <div class="a-sub">all time</div>
+            </div>
 
-        <div class="stat-item">
-            <p class="stat-label">Expires At</p>
-            <p id="statExpiresAt" class="stat-value"></p>
-        </div>
+            <div class="analytics-card">
+                <div class="a-label">Original URL</div>
+                <div class="a-value truncate" id="statOriginalUrl">—</div>
+            </div>
 
-        <div class="stat-item">
-            <p class="stat-label">Total Clicks</p>
-            <p id="statClickCount" class="stat-value"></p>
-        </div>
+            <div class="analytics-card">
+                <div class="a-label">Short URL</div>
+                <div class="a-value" id="statShortUrl">—</div>
+            </div>
 
+            <div class="analytics-card">
+                <div class="a-label">Created</div>
+                <div class="a-value" id="statCreatedAt">—</div>
+            </div>
+
+            <div class="analytics-card">
+                <div class="a-label">Expires</div>
+                <div class="a-value" id="statExpiresAt">—</div>
+            </div>
+
+        </div>
     </div>
 </section>
+
+<!-- Footer -->
+<footer class="footer">
+    <span>Built with Spring Boot · Deployed on Render</span>
+</footer>
 
 <script src="app.js"></script>
-
 </body>
 </html>
