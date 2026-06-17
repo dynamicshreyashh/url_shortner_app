@@ -28,7 +28,8 @@ The application allows users to generate short URLs, redirect links, track click
 
 
 
-![Project Screenshot](assets/screenshot.png)
+![Project Screenshot](assets/screenshot.png)<img width="1786" height="829" alt="Screenshot 2026-06-17 100014" src="https://github.com/user-attachments/assets/a381bb23-dbc1-43cb-b534-c9a5515b0cce" />
+
 
 
 
