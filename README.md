@@ -1,3 +1,4 @@
+<img width="1786" height="829" alt="screenshot" src="https://github.com/user-attachments/assets/fdd9f4c1-b12a-46ec-b206-7c1c1ce491ca" />
 \# 🔗 URL Shortener Application
 
 
