@@ -1,7 +1,8 @@
-
 # 🔗 URL Shortener Application
 
 A modern URL Shortener built using **Java Spring Boot** and **Vanilla JavaScript** that allows users to generate short URLs, manage links, track click statistics, and redirect users seamlessly.
+
+The project includes an automated **CI pipeline using GitHub Actions** for build validation, testing, packaging, and artifact generation.
 
 ---
 
@@ -27,6 +28,7 @@ A modern URL Shortener built using **Java Spring Boot** and **Vanilla JavaScript
 * ↪️ Automatic redirection to original URLs
 * 📱 Fully responsive user interface
 * ⚡ Fast and lightweight application
+* ⚙️ Automated CI pipeline using GitHub Actions
 
 ---
 
@@ -39,8 +41,46 @@ A modern URL Shortener built using **Java Spring Boot** and **Vanilla JavaScript
 | Database         | H2 Database                |
 | ORM              | Spring Data JPA, Hibernate |
 | Build Tool       | Maven                      |
+| CI/CD            | GitHub Actions             |
 | Containerization | Docker                     |
 | Deployment       | Render                     |
+
+---
+
+## ⚙️ CI/CD Pipeline
+
+This project uses **GitHub Actions** to automate validation, testing, packaging, and artifact generation.
+
+### Workflow Location
+
+```text
+.github/workflows/ci.yml
+```
+
+### Workflow Steps
+
+```text
+Push / Pull Request
+        │
+        ▼
+GitHub Actions
+        │
+        ├── Checkout Repository
+        ├── Setup Java 17
+        ├── Validate Maven Project
+        ├── Run Unit Tests
+        ├── Package Application
+        ├── Verify JAR Generation
+        └── Upload Build Artifact
+```
+
+### Pipeline Features
+
+* Automated build validation on every push and pull request
+* Unit testing using Spring Boot Test and JUnit
+* Maven package generation
+* Build artifact storage
+* Continuous Integration (CI) using GitHub Actions
 
 ---
 
@@ -68,26 +108,44 @@ H2 Database
 
 ## 📁 Project Structure
 
-```bash
-src
-├── main
-│   ├── java
-│   │   └── urlshortner
-│   │       ├── controller
-│   │       ├── service
-│   │       ├── repository
-│   │       ├── entity
-│   │       └── Application.java
-│   │
-│   └── resources
-│       ├── static
-│       │   ├── index.html
-│       │   ├── style.css
-│       │   └── app.js
-│       │
-│       └── application.properties
+```text
+url_shortner_app
 │
-└── test
+├── .github
+│   └── workflows
+│       └── ci.yml
+│
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── urlshortner
+│   │   │       ├── controller
+│   │   │       ├── dto
+│   │   │       ├── entity
+│   │   │       ├── exception
+│   │   │       ├── repository
+│   │   │       ├── service
+│   │   │       └── Application.java
+│   │   │
+│   │   └── resources
+│   │       ├── static
+│   │       │   ├── index.html
+│   │       │   ├── style.css
+│   │       │   └── app.js
+│   │       │
+│   │       └── application.properties
+│   │
+│   └── test
+│       └── java
+│           └── urlshortner
+│               └── ApplicationTests.java
+│
+├── Dockerfile
+├── pom.xml
+├── mvnw
+├── mvnw.cmd
+├── README.md
+└── .gitignore
 ```
 
 ---
@@ -99,32 +157,32 @@ src
 | POST   | `/api/shorten`            | Create a shortened URL   |
 | GET    | `/r/{shortCode}`          | Redirect to original URL |
 | GET    | `/api/stats/{shortCode}`  | Retrieve URL statistics  |
-| DELETE | `/api/delete/{shortCode}` | Delete a shortened URL   |
+| DELETE | `/api/delete/{shortCode}` | Delete shortened URL     |
 
 ---
 
 ## ⚙️ Getting Started
 
-### 1️⃣ Clone the Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/dynamicshreyashh/url_shortner_app.git
 cd url_shortner_app
 ```
 
-### 2️⃣ Build the Project
+### Build Project
 
 ```bash
 mvn clean package
 ```
 
-### 3️⃣ Run the Application
+### Run Application
 
 ```bash
 java -jar target/urlshortner-0.0.1-SNAPSHOT.jar
 ```
 
-### 4️⃣ Access the Application
+### Access Application
 
 ```text
 http://localhost:8080
@@ -156,12 +214,9 @@ http://localhost:8080
 
 ## 🎯 Future Enhancements
 
-* User Authentication & Authorization
-* Custom Alias Support
-* QR Code Generation
-* Analytics Dashboard
-* PostgreSQL/MySQL Support
-* Redis Caching
+* Redis Caching for improved URL retrieval performance
+* PostgreSQL integration for production-grade persistence
+* Apache Kafka for asynchronous click tracking and analytics
 
 ---
 
@@ -169,8 +224,9 @@ http://localhost:8080
 
 ### Shreyash Bhosale
 
-* GitHub: https://github.com/dynamicshreyashh
-* Portfolio: https://shreyas-h-portfolio.vercel.app/
+GitHub: https://github.com/dynamicshreyashh
+
+Portfolio: https://shreyas-h-portfolio.vercel.app/
 
 ---
 
